@@ -14,7 +14,7 @@ export const HomePage: FC = withGuest(() => {
       </Helmet>
       <div className="wrapper">
         {/* <img alt="logo" src={siteLogoPath} className="logo" /> */}
-        <div className="title">Sign in to your account</div>
+        <div className="title">Login</div>
         <div className="home">
             <Outlet></Outlet>
         </div>

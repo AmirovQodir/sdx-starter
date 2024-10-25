@@ -11,15 +11,15 @@ import { AUTH_FIELD_PASSWORD, AUTH_FIELD_REMEMBER, AUTH_FIELD_USER_NAME } from '
 export const useLogin = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { register, control, formState: { errors }, handleSubmit, setValue } = useForm({
+  const form = useForm({
     defaultValues: {
       [AUTH_FIELD_USER_NAME]: '',
       [AUTH_FIELD_PASSWORD]: '',
-      [AUTH_FIELD_REMEMBER]: false,
     },
     resolver: yupResolver(LoginSchema),
     mode: 'onBlur',
-  });
+  })
+  const { register, control, formState: { errors }, handleSubmit, setValue } = form;
 
   const handleErrors = (errors: any) => {
     console.log('error');
@@ -38,7 +38,7 @@ export const useLogin = () => {
 
   const handleLogin = handleSubmit(onSubmit);
 
-  return { control, register, setValue, isLoading, handleLogin };
+  return { control, register, setValue, isLoading, handleLogin, form };
 };
 
 export const login = (values: ILoginQuery): Promise<{token: string}> => {
